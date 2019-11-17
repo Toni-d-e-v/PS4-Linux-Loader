@@ -154,6 +154,7 @@ void notify(char *message)
 	sceSysUtilSendSystemNotificationWithText(0x81, buffer);
 }
 
+#define BAIKAL_UART_BASE 0xC890E000
 void usbthing()
 {
 
@@ -198,7 +199,7 @@ void usbthing()
 	*/
 	
 	char *cmd_line = "panic=0 clocksource=tsc console=tty0 console=ttyS0,115200n8 "
-			"console=uart8250,mmio32,0xd0340000 video=HDMI-A-1:1920x1080-24@60 "
+			"console=uart8250,mmio32,0xC890E000 video=HDMI-A-1:1920x1080-24@60 "
 			"consoleblank=0 net.ifnames=0 drm.debug=0 amdgpu.dpm=0";
 
 	kernel = malloc(kernelsize);
@@ -215,7 +216,6 @@ void usbthing()
 
 	//Call sys_kexec (153 syscall)
 	syscall(153, kernel, kernelsize, initramfs, initramfssize, cmd_line);
-
 	free(kernel);
 	free(initramfs);
 
@@ -224,5 +224,4 @@ void usbthing()
 	syscall(546, evf, 0x4000, 0);
 	syscall(541, evf);
 	syscall(37, 1, 30);
-
 }

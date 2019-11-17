@@ -18,8 +18,8 @@ OBJS_DEBUG	:=	$(patsubst $(SDIR)/%.c, $(ODIR)/%_debug.o, $(CFILES)) $(patsubst $
 
 DIP_1 = 192
 DIP_2 = 168
-DIP_3 = 1
-DIP_4 = 12
+DIP_3 = 178
+DIP_4 = 22
 
 LIBS	:=	-lPS4
 
